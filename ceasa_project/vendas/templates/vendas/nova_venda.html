@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Nova Venda - CEASA{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h1 class="text-xl font-semibold mb-4">Registrar Nova Venda</h1>
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+            <label for="cliente" class="block font-medium">Cliente:</label>
+            <select name="cliente" id="cliente" required class="border rounded p-2 w-full">
+                <option value="">Selecione</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <table id="tabela-itens" class="w-full border-collapse border border-gray-200">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="p-2 border">Produto</th>
+                    <th class="p-2 border">Quantidade</th>
+                    <th class="p-2 border">Preço Unitário (R$)</th>
+                    <th class="p-2 border">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border p-2">
+                        <select name="produto" required class="border rounded p-1 w-full">
+                            {% for produto in produtos %}
+                                <option value="{{ produto.id }}">{{ produto.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td class="border p-2">
+                        <input type="number" name="quantidade" step="0.01" required class="border rounded p-1 w-full">
+                    </td>
+                    <td class="border p-2">
+                        <input type="number" name="preco_unitario" step="0.01" required class="border rounded p-1 w-full">
+                    </td>
+                    <td class="border p-2 text-center">
+                        <button type="button" onclick="adicionarLinha()" class="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded">+</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Salvar Venda</button>
+    </form>
+</div>
+
+<script>
+    function adicionarLinha() {
+        const tabela = document.getElementById('tabela-itens').getElementsByTagName('tbody')[0];
+        const novaLinha = tabela.rows[0].cloneNode(true);
+        novaLinha.querySelectorAll('input').forEach(input => input.value = '');
+        tabela.appendChild(novaLinha);
+    }
+
+    document.querySelector('form').addEventListener('submit', function () {
+        const produtos = document.querySelectorAll('select[name="produto"]');
+        const quantidades = document.querySelectorAll('input[name="quantidade"]');
+        const precos = document.querySelectorAll('input[name="preco_unitario"]');
+
+        produtos.forEach(el => el.name = `produto`);
+        quantidades.forEach(el => el.name = `quantidade`);
+        precos.forEach(el => el.name = `preco_unitario`);
+    });
+</script>
+{% endblock %}
+
+
+

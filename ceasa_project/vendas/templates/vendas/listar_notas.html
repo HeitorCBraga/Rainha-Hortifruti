@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Notas Fiscais - CEASA{% endblock %}
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h1 class="text-xl font-semibold mb-4">Notas Fiscais Emitidas</h1>
+    <table class="w-full border-collapse border border-gray-200">
+        <thead class="bg-blue-600 text-white">
+            <tr>
+                <th class="p-2 border">Cliente</th>
+                <th class="p-2 border">Data</th>
+                <th class="p-2 border">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nota in notas %}
+            <tr class="hover:bg-gray-100">
+                <td class="p-2 border">{{ nota.cliente.nome }}</td>
+                <td class="p-2 border">{{ nota.data|date:"d/m/Y H:i" }}</td>
+                <td class="p-2 border">
+                    <a href="{% url 'detalhe_nota' nota.id %}" class="text-blue-600 hover:underline">Ver Detalhes</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3" class="text-center text-gray-500 p-2">Nenhuma nota registrada.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

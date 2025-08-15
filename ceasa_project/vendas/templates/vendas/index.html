@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold mb-4">Bem-vindo!</h2>
+    <p class="mb-6">Este é o painel principal do sistema de vendas. Aqui você poderá registrar clientes, produtos e emitir notas de venda.</p>
+
+    <div class="space-x-4">
+        <a href="{% url 'nova_venda' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Nova Venda</a>
+        <a href="{% url 'clientes' %}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">Clientes</a>
+        <a href="{% url 'produtos' %}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Produtos</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Produtos - CEASA{% endblock %}
+
+{% block content %}
+<a href="{% url 'novo_produto' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mb-4 inline-block">Novo Produto</a>
+
+<h2 class="text-xl font-bold mb-4">Lista de Produtos</h2>
+
+<table class="w-full border-collapse">
+    <thead>
+        <tr class="bg-gray-200">
+            <th class="border p-2">Nome</th>
+            <th class="border p-2">Preço</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td class="border p-2">{{ produto.nome }}</td>
+            <td class="border p-2">R$ {{ produto.preco }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2" class="border p-2 text-center">Nenhum produto cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

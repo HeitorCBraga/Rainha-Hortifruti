@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Detalhes da Nota{% endblock %}
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h1 class="text-xl font-semibold mb-4">Detalhes da Nota Fiscal</h1>
+    <p><strong>Cliente:</strong> {{ nota.cliente.nome }}</p>
+    <p><strong>Data:</strong> {{ nota.data|date:"d/m/Y H:i" }}</p>
+
+    <table class="w-full border-collapse border border-gray-200 mt-4">
+        <thead class="bg-blue-600 text-white">
+            <tr>
+                <th class="p-2 border">Produto</th>
+                <th class="p-2 border">Quantidade</th>
+                <th class="p-2 border">Preço Unitário</th>
+                <th class="p-2 border">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in itens %}
+            <tr class="hover:bg-gray-100">
+                <td class="p-2 border">{{ item.produto.nome }}</td>
+                <td class="p-2 border">{{ item.quantidade }}</td>
+                <td class="p-2 border">R$ {{ item.preco_unitario }}</td>
+                <td class="p-2 border">R$ {{ item.quantidade|floatformat:2|add:"0"|floatformat:2|add:item.preco_unitario|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="mt-4 text-right text-lg font-semibold">Total: R$ {{ total|floatformat:2 }}</p>
+
+    <a href="{% url 'nota_pdf' nota.id %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded inline-block mt-4">Exportar PDF</a>
+</div>
+{% endblock %}

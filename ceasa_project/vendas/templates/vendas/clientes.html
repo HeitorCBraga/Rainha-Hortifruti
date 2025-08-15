@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - CEASA</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f9; padding: 20px; }
+        h1 { color: #2d7dd2; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #2d7dd2; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+        </tr>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.cpf }}</td>
+            <td>{{ cliente.telefone }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Nenhum cliente cadastrado.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+{% endblock %}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - CEASA</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f9; padding: 20px; }
+        h1 { color: #2d7dd2; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #2d7dd2; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+        </tr>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.cpf }}</td>
+            <td>{{ cliente.telefone }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Nenhum cliente cadastrado.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

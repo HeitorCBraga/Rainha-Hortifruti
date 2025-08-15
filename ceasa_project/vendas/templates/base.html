@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sistema CEASA{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-600 text-white p-4">
+        <h1 class="text-2xl font-bold">Sistema de Vendas CEASA</h1>
+    </header>
+
+    <main class="container mx-auto mt-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-200 text-center p-4 mt-8">
+        <p>&copy; {{ now|date:"Y" }} CEASA. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
